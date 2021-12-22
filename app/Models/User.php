@@ -2,15 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+
+     /**
+     * Find the user instance for the given username.
+     *
+     * @param  string  $username
+     * @return \App\Models\User
+     */
+    public function findForPassport($username)
+    {
+        return $this->where('username', $username)->first();
+    }
+
+
+     /**
+     * Validate the password of the user for the Passport password grant.
+     *
+     * @param  string  $password
+     * @return bool
+     */
+    public function validateForPassportPasswordGrant($password)
+    {
+        // return Hash::check($password, $this->password);
+        return $password == $this->password;
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +46,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
     ];
 
     /**
@@ -40,5 +66,16 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
+
+    /**
+     * 格式化日期字符串
+     */
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
 }
