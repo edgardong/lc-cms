@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Common\Result;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,7 +38,15 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            // if($e instanceof OAuthServerException) {
+            //     // $code = $e->getCode();
+            //     // if($code ==9){
+            //         // return Result::error(40001,'');
+            //         abort(401);
+            //     // }
+            // }
+            Log::error($e);
+            // abort(500);
         });
     }
 }

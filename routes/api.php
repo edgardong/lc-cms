@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,11 +18,6 @@ use App\Http\Controllers\UserController;
 |
  */
 
-
-
-Route::get('/test', function (Request $request) {
-    return array('id' => 'hello , laravel');
-});
 
 // 管理模块API
 Route::prefix('admin')->group(function () {
@@ -34,8 +31,8 @@ Route::prefix('user')->group(function () {
     });
 
     Route::get('/info', function (Request $request) {
-        return $request->user();
-    })->middleware('auth.api:api');
+        return Auth::user();
+    })->middleware('auth:api');
 
     /**
      * 用户注册
