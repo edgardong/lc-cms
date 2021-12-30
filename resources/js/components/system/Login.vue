@@ -116,19 +116,18 @@ export default defineComponent({
                     }
                 })
 
+                console.log(modelRef.value.model)
+
 
                 var data = JSON.stringify({
-                    "username": "edgardong",
-                    "password": "123456",
-                    "grant_type": "password",
-                    "client_id": "952bb865-14d3-4455-8646-bbc6c59c14cf",
-                    "client_secret": "NdV95aBMtdeYGBMmNhextTLybbudrxAlrAtN6GXD",
-                    "scope": "*"
+                    // "username": "edgardong",
+                    // "password": "123456",
+                    ...modelRef.value.model
                 });
 
                 var config = {
                     method: 'post',
-                    url: 'http://localhost:8000/api/user/login',
+                    url: 'http://localhost:8888/api/user/login',
                     headers: {
                         'Content-Type': 'application/json'
                     },

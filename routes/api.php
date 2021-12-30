@@ -24,6 +24,10 @@ Route::prefix('admin')->group(function () {
 
 });
 
+Route::get('/test', function () {
+    return array('id' => 'hello , user');
+});
+
 // 公用模块API
 Route::prefix('user')->group(function () {
     Route::get('/test', function () {

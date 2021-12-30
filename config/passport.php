@@ -46,6 +46,14 @@ return [
         'secret' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET'),
     ],
 
+
+		'password_client' => [
+			'grant_type' => env('OAUTH_GRANT_TYPE'),
+			'client_id' => env('OAUTH_CLIENT_ID','952bb865-14d3-4455-8646-bbc6c59c14cf'),
+			'client_secret' => env('OAUTH_CLIENT_SECRET','NdV95aBMtdeYGBMmNhextTLybbudrxAlrAtN6GXD'),
+			'scope' => env('OAUTH_SCOPE', '*')
+		],
+
     /*
     |--------------------------------------------------------------------------
     | Passport Storage Driver

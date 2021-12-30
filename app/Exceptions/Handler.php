@@ -38,13 +38,13 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            // if($e instanceof OAuthServerException) {
-            //     // $code = $e->getCode();
-            //     // if($code ==9){
-            //         // return Result::error(40001,'');
-            //         abort(401);
-            //     // }
-            // }
+            if($e instanceof OAuthServerException) {
+                // $code = $e->getCode();
+                // if($code ==9){
+                    // return Result::error(40001,'');
+                    abort(401);
+                // }
+            }
             Log::error($e);
             // abort(500);
         });

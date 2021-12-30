@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Common;
+use Illuminate\Support\Facades\Log;
 
 class Result
 {
@@ -12,14 +13,13 @@ class Result
     public static function ok($data = null)
     {
 
-        $data = [
+        $result = [
             'err_code' => 0,
             'err_msg' => '操作成功',
             'data' => $data,
             'status' => 'success',
         ];
-
-        return response()->json($data);
+        return response()->json($result);
     }
 
     /**
