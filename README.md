@@ -11,6 +11,11 @@
 
 Laravel 是一款优秀的PHP开发框架。
 
+[![star](https://gitee.com/edgardong/lc-cms/badge/star.svg?theme=dark)](https://gitee.com/edgardong/lc-cms/stargazers)
+
+
+[![DH/lc-cms](https://gitee.com/edgardong/lc-cms/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571)](https://gitee.com/edgardong/lc-cms)
+
 
 #### 特别鸣谢
 
