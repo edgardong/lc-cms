@@ -1,7 +1,9 @@
+import * as VueRouter from 'vue-router'
+
 import Login from './components/system/Login'
 import Main from  './components/layouts/Main'
 
-export default [
+let routes =  [
 {
     name:'login',
     path: '/login',
@@ -9,6 +11,15 @@ export default [
 },
 {
     path: '/',
+    name:'main',
     component: Main
 },
 ]
+
+const router = VueRouter.createRouter({
+    // history mode: createWebHashHistory createWebHistory
+    history: VueRouter.createWebHashHistory(),
+    routes,
+})
+
+export default router

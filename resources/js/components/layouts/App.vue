@@ -8,7 +8,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import { darkTheme } from "naive-ui";
+import { darkTheme, useMessage } from "naive-ui";
 const themeOverrides = {
   Button:{
     color: "#1f2d41FF",
@@ -23,9 +23,10 @@ const themeOverrides = {
 
 export default defineComponent({
   setup() {
+    // window.$message = useMessage()
     return {
       themeOverrides,
-      darkTheme,
+      darkTheme
     };
   },
   mounted() {
