@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60403a2d16f5382caa28ab3d949b8f87",
+    "content-hash": "af5c6a61d62db78cf0b408c3119773c0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -753,6 +753,77 @@
                 }
             ],
             "time": "2021-04-26T11:24:25+00:00"
+        },
+        {
+            "name": "gallery/plugin",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/creatint/laravel_plugin.git",
+                "reference": "e86eb8260f607c8247d06da320bc0cb4af505db9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/creatint/laravel_plugin/zipball/e86eb8260f607c8247d06da320bc0cb4af505db9",
+                "reference": "e86eb8260f607c8247d06da320bc0cb4af505db9",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": "^7.0.0"
+            },
+            "require-dev": {
+                "laravel/framework": "^5.8"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gallery\\Plugin\\PluginServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gallery\\Plugin\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wangds",
+                    "email": "creatint@qq.com"
+                }
+            ],
+            "description": "Laravel通用插件系统。An universal plugin system for laravel.",
+            "homepage": "https://github.com/tianshuapp/gallery_plugin",
+            "keywords": [
+                "HOOK",
+                "Plugin Market",
+                "laravel",
+                "php",
+                "plugin system",
+                "插件",
+                "插件市场",
+                "钩子"
+            ],
+            "support": {
+                "issues": "https://github.com/creatint/laravel_plugin/issues",
+                "source": "https://github.com/creatint/laravel_plugin/tree/main"
+            },
+            "time": "2020-11-30T03:12:47+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -3716,6 +3787,94 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "5.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "6f4764c0cafe1cf508b7b9801a81b2caa858150a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/6f4764c0cafe1cf508b7b9801a81b2caa858150a",
+                "reference": "6f4764c0cafe1cf508b7b9801a81b2caa858150a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "illuminate/auth": "^7.0|^8.0",
+                "illuminate/container": "^7.0|^8.0",
+                "illuminate/contracts": "^7.0|^8.0",
+                "illuminate/database": "^7.0|^8.0",
+                "php": "^7.3|^8.0|^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.4",
+                "predis/predis": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "5.x-dev",
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 6.0 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "permissions",
+                "rbac",
+                "roles",
+                "security",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-permission/issues",
+                "source": "https://github.com/spatie/laravel-permission/tree/5.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-01-03T11:29:06+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -9444,7 +9603,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "gallery/plugin": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

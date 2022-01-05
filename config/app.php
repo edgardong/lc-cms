@@ -165,7 +165,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Spatie\Permission\PermissionServiceProvider::class,
 
+        Gallery\Plugin\PluginServiceProvider::class,
         /*
          * Application Service Providers...
          */
