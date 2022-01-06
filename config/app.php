@@ -167,7 +167,8 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
 
-        Gallery\Plugin\PluginServiceProvider::class,
+        BenSampo\Enum\EnumServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

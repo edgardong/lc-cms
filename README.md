@@ -26,6 +26,13 @@ Laravel 是一款优秀的PHP开发框架。
 [laravel](https://laravel.com/)
 
 
+#### 生成passport客户端
+
+````shell
+php artisan passport:client --password
+````
+
+
 
 ## License
 

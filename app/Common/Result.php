@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Common;
-use Illuminate\Support\Facades\Log;
+
+use App\Enums\ErrorCode;
+use BenSampo\Enum\Enum;
 
 class Result
 {
@@ -27,11 +29,28 @@ class Result
      * @param int code
      * @param string message
      */
-    public static function error($code = 50000, $message = '未知异常，请联系管理员')
+    public static function error(int $code = 50000,string $message = '未知异常，请联系管理员')
     {
         $data = [
             'err_code' => $code,
             'err_msg' => $message,
+            'data' => '',
+            'status' => 'fail',
+        ];
+
+        return response()->json($data);
+    }
+
+    /**
+     * 返回错误结果
+     * @param int code
+     * @param string message
+     */
+    public static function enumError(array $enum)
+    {
+        $data = [
+            'err_code' => $enum['code'],
+            'err_msg' => $enum['msg'],
             'data' => '',
             'status' => 'fail',
         ];

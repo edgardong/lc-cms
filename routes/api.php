@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\ValidationException;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,57 +18,16 @@ use Illuminate\Support\Facades\Auth;
 |
  */
 
-
-// 管理模块API
-Route::prefix('admin')->group(function () {
-
-});
-
-Route::get('/test', function () {
-    return array('id' => 'hello , user');
-});
-
-// 公用模块API
+/**
+ * 用户模块路由
+ */
 Route::prefix('user')->group(function () {
-    Route::get('/test', function () {
-        return array('id' => 'hello , user');
-    });
-
     Route::get('/info', function (Request $request) {
         return Auth::user();
     })->middleware('auth:api');
 
-    /**
-     * 用户注册
-     */
-    Route::post('/register', function (Request $request) {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('username', $request->username)->first();
-
-        if ($user) {
-            throw ValidationException::withMessages([
-                'username' => ['该用户已存在，请直接登录'],
-            ]);
-        }
-
-        $new_user = new User;
-        $new_user->username = $request->username;
-        $new_user->password = $request->password;
-        $new_user->type = '100';
-
-        $new_user->save();
-
-        return 'success';
-    });
-
-    /**
-     * 用户登录
-     */
-    Route::post('/login',[UserController::class, 'login']);
+    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/login', [UserController::class, 'login']);
 
     Route::post('/forget_password', function (Request $request) {
         # code...
@@ -77,4 +36,24 @@ Route::prefix('user')->group(function () {
     Route::post('/reset_password', function (Request $request) {
 
     });
+});
+
+/**
+ * 管理员相关路由
+ */
+Route::prefix('admin')->group(function () {
+    Route::prefix('user')->middleware('auth:api')->group(function () {
+        Route::get('/list', [UserController::class, 'list']); // 用户列表
+        Route::get('/detail', [UserController::class, 'detail']); // 用户详情
+        Route::get('/edit', [UserController::class, 'edit']); // 编辑用户
+        Route::get('/add', [UserController::class, 'add']); // 添加用户
+        Route::get('/delete', [UserController::class, 'delete']); // 删除用户
+    });
+});
+
+/**
+ * 菜单相关路由
+ */
+Route::prefix('menu')->group(function () {
+    Route::post('/list', [MenuController::class, 'list'])->middleware('auth:api');
 });
