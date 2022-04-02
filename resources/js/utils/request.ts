@@ -7,7 +7,7 @@ const request = axios.create()
  * @param params request params
  * @returns request result
  */
-export const get = (url: string, params: object) => request({
+ const get = (url: string, params: object) => request({
     method: 'get',
     url,
     params
@@ -19,7 +19,7 @@ export const get = (url: string, params: object) => request({
  * @param params request params
  * @returns request result
  */
-export const post = (url: string, data: object) => request({
+ const post = (url: string, data: object) => request({
     method: 'POST',
     url,
     data
@@ -31,7 +31,7 @@ export const post = (url: string, data: object) => request({
  * @param params request params
  * @returns request result
  */
-export const put = (url: string, data: object) => request({
+ const put = (url: string, data: object) => request({
     method: 'put',
     url,
     data
@@ -43,7 +43,7 @@ export const put = (url: string, data: object) => request({
  * @param params request params
  * @returns request result
  */
-export const del = (url: string, data: object) => request({
+ const del = (url: string, data: object) => request({
     method: 'delete',
     url,
     data
@@ -61,7 +61,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(resp => {
     if(resp.data.err_code!==0){
         // @ts-ignore
-        (window.$message as any).error(resp.data.err_msg) 
+        (window.$message as any).error(resp.data.err_msg)
         return false
     }
     return resp.data.data
@@ -71,3 +71,10 @@ request.interceptors.response.use(resp => {
 })
 
 export default request
+
+export {
+    get,
+    post,
+    put,
+    del
+}

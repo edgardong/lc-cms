@@ -12,8 +12,9 @@
    <body>
      <div id="app">
          <div>
-      <!-- 3、使用组件 -->
-          这里是index.blade.php
+            <!-- 3、使用组件 -->
+          这里是index.blade.php <br/>
+          不要做一些无意义的事儿了
          </div>
      </div>
 

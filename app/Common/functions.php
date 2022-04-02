@@ -23,7 +23,7 @@ if (!function_exists("http_get")) {
  * @return mixed
  */
 if (!function_exists("http_post")) {
-    function http_post(string $url, array $params)
+    function http_post($url, array $params)
     {
         $response = Http::post($url, $params);
         return $response;

@@ -1,10 +1,10 @@
 import { get, post, put, del } from '../utils/request'
 
 class BaseApi {
-    public get;
-    public post;
-    public put;
-    public delete;
+    public get:Function;
+    public post:Function;
+    public put:Function;
+    public delete:Function;
 
     constructor(prefix = '') {
         this.get = (url: string, params: object) => get(prefix + url, params)

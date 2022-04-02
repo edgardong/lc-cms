@@ -2,6 +2,7 @@ import * as VueRouter from 'vue-router'
 
 import Login from './components/system/Login'
 import Main from  './components/layouts/Main'
+import Dashboard from './components/dashboard'
 
 let routes =  [
 {
@@ -12,7 +13,13 @@ let routes =  [
 {
     path: '/',
     name:'main',
-    component: Main
+    component: Main,
+    children:[
+        {
+            path: '',
+            component: Dashboard
+        }
+    ]
 },
 ]
 

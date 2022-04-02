@@ -1,4 +1,4 @@
-## LC-CMS
+## d3-cms php后台版本
 
 <!-- <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -16,6 +16,14 @@ Laravel 是一款优秀的PHP开发框架。
 
 [![DH/lc-cms](https://gitee.com/edgardong/lc-cms/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571)](https://gitee.com/edgardong/lc-cms)
 
+
+## 功能说明
+- [ ] 用户管理
+- [ ] 菜单管理
+- [ ] 角色管理
+- [ ] 权限管理
+- [ ] 插件管理
+- [ ] 主题管理
 
 #### 特别鸣谢
 
