@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-html, body, #app, .lc-full_page {
+html, body{
   width: 100%;
   height: 100%;
   padding: 0;

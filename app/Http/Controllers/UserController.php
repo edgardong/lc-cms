@@ -55,10 +55,10 @@ class UserController extends Controller
         $data = [
             "username" => $request->username,
             "password" => $request->password,
-            "grant_type" => "password",
-            "client_id" => "95485a89-19a3-4227-9615-66224b1fee45",
-            "client_secret" => "O9jLt1nhnokihOBHeX2wEOb6559Tj4kqsMohM9J9",
-            "scope" => "*",
+            "grant_type" => env('OAUTH_GRANT_TYPE'),
+            "client_id" => env('OAUTH_CLIENT_ID'),
+            "client_secret" => env('OAUTH_CLIENT_SECRET'),
+            "scope" => env('OAUTH_SCOPE'),
         ];
 
         $response = Http::withOptions([
@@ -79,7 +79,6 @@ class UserController extends Controller
      */
     function list(Request $request) {
         $users = User::paginate(15);
-
         return $users;
     }
 
