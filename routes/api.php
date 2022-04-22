@@ -42,12 +42,14 @@ Route::prefix('user')->group(function () {
  * 管理员相关路由
  */
 Route::prefix('admin')->group(function () {
+    Route::post('/user/login', [UserController::class, 'login']);
     Route::prefix('user')->middleware('auth:api')->group(function () {
         Route::get('/list', [UserController::class, 'list']); // 用户列表
+        Route::get('/info', [UserController::class, 'info']); // 用户信息
         Route::get('/detail', [UserController::class, 'detail']); // 用户详情
-        Route::get('/edit', [UserController::class, 'edit']); // 编辑用户
-        Route::get('/add', [UserController::class, 'add']); // 添加用户
-        Route::get('/delete', [UserController::class, 'delete']); // 删除用户
+        Route::put('/edit', [UserController::class, 'edit']); // 编辑用户
+        Route::post('/add', [UserController::class, 'add']); // 添加用户
+        Route::delete('/delete', [UserController::class, 'delete']); // 删除用户
     });
 });
 

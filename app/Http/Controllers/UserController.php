@@ -79,7 +79,16 @@ class UserController extends Controller
      */
     function list(Request $request) {
         $users = User::paginate(15);
-        return $users;
+        return  Result::ok($users);
+    }
+
+    /**
+     * 获取用户信息
+     */
+    function info(Request $request) {
+        $user = $request->user();
+        // baseinfo, menus, permissions
+        return Result::ok($user);
     }
 
     /**

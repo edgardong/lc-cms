@@ -11,7 +11,7 @@ const app = Vue.createApp(RootComponent)
 // const app = Vue.createApp({})
 
 router.beforeEach((to, from, next) => {
-    console.log(store.state.user)
+    // console.log(store.state.user)
     if (!store.state.user.token && to.name!='login') {
         next({
             name: 'login'

@@ -3,6 +3,7 @@ import * as VueRouter from 'vue-router'
 import Login from './components/system/Login'
 import Main from  './components/layouts/Main'
 import Dashboard from './components/dashboard'
+import User from './components/system/user'
 
 let routes =  [
 {
@@ -18,6 +19,10 @@ let routes =  [
         {
             path: '',
             component: Dashboard
+        },
+        {
+            path: 'user',
+            component: User
         }
     ]
 },

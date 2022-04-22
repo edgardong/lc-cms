@@ -18,8 +18,8 @@ class SwaggerController extends Controller
 {
    public function doc()
    {
-     $swagger = \OpenApi\scan(app_path('Http/Controllers/Api'));
-     return response()->json($swagger);
+    //  $swagger = \OpenApi\scan(app_path('Http/Controllers/Api'));
+    //  return response()->json($swagger);
    }
 }
 

@@ -1,4 +1,5 @@
 import axios from "axios"
+import store from "../store"
 
 const request = axios.create()
 /**
@@ -52,6 +53,12 @@ const request = axios.create()
 
 request.interceptors.request.use(config => {
     // do something before send
+    let token = store.state.user.token
+    if(token){
+        // config.headers['Content-Type']='application/json'
+        config.headers['Authorization']  = `${token.token_type} ${token.access_token}`
+    }
+
     return config
 }, error => {
     // do something when error occur

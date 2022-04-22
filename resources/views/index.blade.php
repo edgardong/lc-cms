@@ -23,7 +23,7 @@
         <script src="{{ asset('js/silder.js') }}"></script><!--获取当前页导航 高亮显示标题-->
     </nav>
 </header>
-<div class="mainContent" id="app">
+<div class="mainContent">
     <aside>
         <div class="avatar">
             <a href="#"><span>青轻飞扬</span></a>
