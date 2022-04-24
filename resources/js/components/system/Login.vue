@@ -48,14 +48,14 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import { useMessage } from "naive-ui";
-import store from "../../store/index";
+import { defineComponent, ref } from 'vue'
+import { useMessage } from 'naive-ui'
+import store from '../../store/index'
 
 export default defineComponent({
   setup() {
-    const formRef = ref(null);
-    const rPasswordFormItemRef = ref(null);
+    const formRef = ref(null)
+    const rPasswordFormItemRef = ref(null)
     const message = useMessage()
     window.$message = message
     const modelRef = ref({
@@ -64,18 +64,18 @@ export default defineComponent({
         password: null,
         reenteredPassword: null,
       },
-    });
+    })
 
     function validatePasswordStartWith(rule, value) {
       return (
         modelRef.value.password &&
         modelRef.value.password.startsWith(value) &&
         modelRef.value.password.length >= value.length
-      );
+      )
     }
 
     function validatePasswordSame(rule, value) {
-      return value === modelRef.value.password;
+      return value === modelRef.value.password
     }
     return {
       formRef,
@@ -88,61 +88,61 @@ export default defineComponent({
               required: true,
               validator(rule, value) {
                 if (!value) {
-                  return new Error("请输入账号");
+                  return new Error('请输入账号')
                 }
-                return true;
+                return true
               },
-              trigger: ["input", "blur"],
+              trigger: ['input', 'blur'],
             },
           ],
           password: [
             {
               required: true,
-              message: "请输入密码",
+              message: '请输入密码',
             },
           ],
           reenteredPassword: [
             {
               required: true,
-              message: "请再次输入密码",
-              trigger: ["input", "blur"],
+              message: '请再次输入密码',
+              trigger: ['input', 'blur'],
             },
             {
               validator: validatePasswordStartWith,
-              message: "两次密码输入不一致",
-              trigger: "input",
+              message: '两次密码输入不一致',
+              trigger: 'input',
             },
             {
               validator: validatePasswordSame,
-              message: "两次密码输入不一致",
-              trigger: ["blur", "password-input"],
+              message: '两次密码输入不一致',
+              trigger: ['blur', 'password-input'],
             },
           ],
         },
       },
       handlePasswordInput() {
         if (modelRef.value.reenteredPassword) {
-          rPasswordFormItemRef.value.validate({ trigger: "password-input" });
+          rPasswordFormItemRef.value.validate({ trigger: 'password-input' })
         }
       },
       async handleValidateButtonClick(e) {
-        e.preventDefault();
+        e.preventDefault()
         formRef.value.validate((errors) => {
           if (!errors) {
             // message.success("验证成功");
           } else {
-            console.log(errors);
+            console.log(errors)
             // message.error("验证失败");
           }
-        });
+        })
 
         let data = modelRef.value.model
-        let result = await store.dispatch("user/userLogin", data);
-        console.log('result.... ',result);
+        let result = await store.dispatch('user/userLogin', data)
+        console.log('result.... ', result)
       },
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -4,18 +4,31 @@
       :columns="columns"
       :data="listInfo.data"
       :pagination="paginationReactive"
-      :bordered="true"
+      striped
     />
   </div>
 </template>
 
 <script setup>
-import { ref,h, reactive } from "vue"
-import { useMessage ,NButton} from "naive-ui";
+import { ref, h, reactive } from "vue";
+import { useMessage, NButton, NButtonGroup } from "naive-ui";
 import store from "../../store/index";
 
 const message = useMessage();
 const listInfo = ref({});
+
+const props = defineProps({
+  api: {
+    type: Function,
+    required: true,
+  },
+  rowButtons: {
+    type: Array,
+    default: () => [],
+  },
+})
+
+const emits = defineEmits(['detail','edit','delete'])
 
 const columns = ref([
   {
@@ -31,26 +44,65 @@ const columns = ref([
     key: "nickname",
   },
   {
-      title:'操作',
-      key: 'actions',
-      render (row) {
-        return h(
-          NButton,
-          {
-            strong: true,
-            tertiary: true,
-            size: 'small',
-            onClick: () => play(row)
+    title: "操作",
+    width: 300,
+    align:'center',
+    fixed: 'right',
+    key: "actions",
+    render(row) {
+      const buttons = [
+        ...props.rowButtons,
+        {
+          key: "detail",
+          title: "详情",
+          attrs: {
+            type: "primary",
+            quaternary: false,
+            ghost: true,
+            size: "small",
+            round: true,
+            onClick: () => emits('detail',row),
           },
-          { default: () => 'Play' }
-        )
-      }
-  }
-]);
+        },
+        {
+          key: "edit",
+          title: "编辑",
+          attrs: {
+            type: "info",
+            quaternary: false,
+            ghost: true,
+            size: "small",
+            onClick: () => emits('edit',row),
+          },
+        },
+        {
+          key: "delete",
+          title: "删除",
+          attrs: {
+            type: "error",
+            quaternary: false,
+            ghost: true,
+            size: "small",
+            round: true,
+            onClick: () => emits('delete',row),
+          },
+        },
+      ].map((btn) => {
+        if (btn.key) {
+          return h(
+            NButton,
+            {
+              ...btn.attrs
+            },
+            { default: () => btn.title }
+          );
+        }
+      });
 
-const props = defineProps({
-  api: Function,
-});
+      return h(NButtonGroup, {}, [buttons]);
+    },
+  },
+]);
 
 const paginationReactive = reactive({
   page: listInfo.value.current_page,
@@ -64,12 +116,12 @@ const paginationReactive = reactive({
     paginationReactive.pageSize = pageSize;
     paginationReactive.page = 1;
   },
-})
+});
 
 const info = await props.api();
 console.log("...info", info);
 if (info) {
-  listInfo.value = info
+  listInfo.value = info;
 }
 </script>
 

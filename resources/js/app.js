@@ -6,9 +6,13 @@ import axios from "axios"
 import naive from 'naive-ui'
 
 import RootComponent from "./components/layouts/App"
+import D3List from './components/common/d3-list'
 
 const app = Vue.createApp(RootComponent)
 // const app = Vue.createApp({})
+
+// global components
+app.component('d3-list', D3List)
 
 router.beforeEach((to, from, next) => {
     // console.log(store.state.user)
