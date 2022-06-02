@@ -11,17 +11,25 @@
       :collapsed="collapsed"
     >
       <n-menu
+        accordion
         :collapsed="collapsed"
         :collapsed-width="64"
         :collapsed-icon-size="22"
         :options="menuOptions"
         v-model:value="activeKey"
+        @update:value="handleMenuClick"
+        @update:expanded-keys="handleMenuKeys"
       />
     </n-layout-sider>
     <Suspense>
       <n-layout class="main-box">
         <!-- 顶部导航栏 -->
-        <n-layout-header bordered position="absolute" class="main-header">颐和园路1</n-layout-header>
+        <n-layout-header bordered position="absolute" class="main-header">
+          <n-breadcrumb>
+            <n-breadcrumb-item>I'm ok</n-breadcrumb-item>
+            <n-breadcrumb-item>I'm ok2</n-breadcrumb-item>
+          </n-breadcrumb>
+        </n-layout-header>
 
         <!-- 内容区域 -->
         <n-layout-content :native-scrollbar="false" class="main-content">
@@ -29,6 +37,8 @@
             <router-view></router-view>
           </n-card>
         </n-layout-content>
+
+        <n-back-top :right="100" />
 
         <!-- 底部区域 -->
         <n-layout-footer class="main-footer" position="absolute">城府路</n-layout-footer>
@@ -41,6 +51,7 @@
 import { defineComponent, h, ref, Suspense } from 'vue'
 import { NIcon } from 'naive-ui'
 import store from '../../store'
+import router from '../../router'
 import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
@@ -98,6 +109,11 @@ const menuOptions = [
         key: 'menu',
         icon: renderIcon(MenuIcon),
       },
+      {
+        label: '用户协议',
+        key: 'agreement',
+        icon: renderIcon(MenuIcon),
+      },
     ],
   },
   {
@@ -139,6 +155,22 @@ const menuOptions = [
     icon: renderIcon(AboutIcon),
   },
 ]
+
+/**
+ * 菜单选中事件
+ */
+const handleMenuClick = (key, item) => {
+  console.log(key, item)
+  router.push({ name: key })
+}
+
+/**
+ * 菜单数据变化
+ */
+const handleMenuKeys = (keys) => {
+  console.log(keys)
+}
+
 export default defineComponent({
   setup() {
     store.dispatch('user/userInfo')
@@ -147,6 +179,8 @@ export default defineComponent({
       collapsed: ref(false),
       menuOptions,
       Suspense,
+      handleMenuClick,
+      handleMenuKeys,
     }
   },
 })
