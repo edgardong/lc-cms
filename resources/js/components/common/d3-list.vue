@@ -1,11 +1,24 @@
 <template>
   <div class="d3-list">
-    <n-data-table
-      :columns="columns"
-      :data="listInfo.data"
-      :pagination="paginationReactive"
-      striped
-    />
+    <n-space size="medium" vertical>
+      <div class="operate">
+        <n-button text @click="handleAdd">
+          <n-icon color="#0e7a0d" size="26">
+            <add-icon />
+          </n-icon>
+        </n-button>
+      </div>
+      <n-data-table
+        :columns="columns"
+        :data="listInfo.data"
+        :pagination="paginationReactive"
+        striped
+      />
+    </n-space>
+
+    <n-drawer v-model:show="active" width="45%" :placement="placement">
+      <n-drawer-content :title="addTitle" closable>《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。</n-drawer-content>
+    </n-drawer>
   </div>
 </template>
 
@@ -13,6 +26,7 @@
 import { ref, h, reactive } from 'vue'
 import { useMessage, NButton, NButtonGroup } from 'naive-ui'
 import store from '../../store/index'
+import { Add as AddIcon } from '@vicons/ionicons5'
 
 const message = useMessage()
 const listInfo = ref({})
@@ -26,22 +40,22 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  columns: {
+    type: Array,
+    default: () => [],
+  },
+  addTitle: {
+    type: String,
+    default: '添加',
+  },
 })
 
-const emits = defineEmits(['detail', 'edit', 'delete'])
-
-const columns = ref([
+const emits = defineEmits(['detail', 'edit', 'delete', 'add'])
+let defaultColumns = [
   {
     title: 'ID',
     key: 'id',
-  },
-  {
-    title: '用户名',
-    key: 'username',
-  },
-  {
-    title: '昵称',
-    key: 'nickname',
+    sort: 0,
   },
   {
     title: '操作',
@@ -49,6 +63,7 @@ const columns = ref([
     align: 'center',
     fixed: 'right',
     key: 'actions',
+    sort: 99999,
     render(row) {
       const buttons = [
         ...props.rowButtons,
@@ -102,8 +117,16 @@ const columns = ref([
       return h(NButtonGroup, {}, [buttons])
     },
   },
-])
+].concat(props.columns)
 
+defaultColumns.sort((pre, next) => (pre.sort || 1) - (next.sort || 1))
+
+console.log(props.columns)
+console.log(defaultColumns)
+const columns = ref(defaultColumns)
+
+const placement = ref('right')
+const active = ref(false)
 const paginationReactive = reactive({
   page: listInfo.value.current_page,
   pageSize: listInfo.value.per_page,
@@ -122,6 +145,11 @@ const info = await props.api()
 console.log('...info', info)
 if (info) {
   listInfo.value = info
+}
+
+const handleAdd = () => {
+  active.value = true
+  emits('add')
 }
 </script>
 
